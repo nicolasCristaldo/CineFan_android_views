@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#D0EAED</color>
+    <color name="primary">#078BC7</color>
+    <color name="secondary">#04786D</color>
+    <color name="text">#011618</color>
+    <color name="accent">#E99A25</color>
+
+    <color name="rating_excellent">#DB3CF6</color>
+    <color name="rating_good">#0DBA14</color>
+    <color name="rating_normal">#F8C222</color>
+    <color name="rating_bad">#F61010</color>
+
+    <color name="green">#00FF04</color>
 </resources>
