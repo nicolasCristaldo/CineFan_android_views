@@ -64,7 +64,11 @@ dependencies {
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.3.1")
+
+    //picasso
+    implementation("com.squareup.picasso:picasso:2.8")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
