@@ -2,7 +2,6 @@ package com.nicolascristaldo.cinefan.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.nicolascristaldo.cinefan.data.MovieRepositoryImp
-import com.nicolascristaldo.cinefan.data.network.response.QueryResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

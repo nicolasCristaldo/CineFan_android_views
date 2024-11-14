@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nicolascristaldo.cinefan.R
 import com.nicolascristaldo.cinefan.data.network.response.Movie
+import com.nicolascristaldo.cinefan.data.network.response.QueryResponse
 import com.nicolascristaldo.cinefan.ui.home.QueryUIState
 
 class MovieAdapter(
@@ -13,9 +14,20 @@ class MovieAdapter(
 ) : RecyclerView.Adapter<MovieViewHolder>() {
 
     fun updateList(uiState: QueryUIState.Success) {
-        this.movies = if (uiState.response.isValidResult()) uiState.response.movies!!
-        else emptyList()
+        var newList: List<Movie> = emptyList()
+        if (uiState.response.isValidResult()) {
+            newList = uiState.response.movies!!
+        }
+        this.movies = newList
         notifyDataSetChanged()
+    }
+
+    fun cleanList() {
+        updateList(
+            QueryUIState.Success(
+                QueryResponse("false", null, null, null)
+            )
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

@@ -1,6 +1,7 @@
 package com.nicolascristaldo.cinefan.ui.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicolascristaldo.cinefan.R
 import com.nicolascristaldo.cinefan.databinding.ActivityMainBinding
 import com.nicolascristaldo.cinefan.ui.home.adapter.MovieAdapter
@@ -63,11 +63,11 @@ class MainActivity : AppCompatActivity() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.queryUIState.collect {
-                    when (it) {
+                viewModel.queryUIState.collect { state ->
+                    when (state) {
                         is QueryUIState.Error -> errorState()
                         QueryUIState.Loading -> loadingState()
-                        is QueryUIState.Success -> successState(it)
+                        is QueryUIState.Success -> successState(state)
                     }
                 }
             }
@@ -84,7 +84,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun errorState() {
-        binding.progressBar.isVisible = true
+        binding.progressBar.isVisible = false
+        movieAdapter.cleanList()
+        Toast.makeText(
+            binding.toolbar.context,
+            getString(R.string.error_occurred),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun hola() {
