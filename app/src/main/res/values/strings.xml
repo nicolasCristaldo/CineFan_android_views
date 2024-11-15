@@ -2,5 +2,13 @@
     <string name="app_name">CineFan</string>
 
     <string name="error_occurred">An error has occurred, check your internet connection.</string>
-    <string name="no_results_found">No results found.</string>
+
+    <string name="movie_type">Type: %s.</string>
+    <string name="movie_year">Year: %s.</string>
+    <string name="movie_runtime">Runtime: %s.</string>
+    <string name="movie_genre">Genre: %s.</string>
+    <string name="movie_rating">Rating</string>
+    <string name="movie_votes">(%s votes)</string>
+    <string name="movie_plot">Plot:\n%s</string>
+    <string name="movie_language">Language: %s.</string>
 </resources>

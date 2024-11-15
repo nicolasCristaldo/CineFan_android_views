@@ -1,5 +1,6 @@
 package com.nicolascristaldo.cinefan.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +16,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nicolascristaldo.cinefan.R
 import com.nicolascristaldo.cinefan.databinding.ActivityMainBinding
+import com.nicolascristaldo.cinefan.ui.detail.DetailActivity
+import com.nicolascristaldo.cinefan.ui.detail.DetailActivity.Companion.EXTRA_ID
 import com.nicolascristaldo.cinefan.ui.home.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapters() {
-        movieAdapter = MovieAdapter { hola() }
+        movieAdapter = MovieAdapter { navigateToDetail(it) }
         binding.rvMovies.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 2)
@@ -93,8 +96,10 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    private fun hola() {
-
+    private fun navigateToDetail(id: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(EXTRA_ID, id)
+        startActivity(intent)
     }
 
     private fun initListeners() {

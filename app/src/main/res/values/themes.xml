@@ -18,9 +18,14 @@
         <item name="android:fontFamily">@font/tajawal_bold</item>
     </style>
 
+    <style name="MovieTitle" parent="Title">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
     <style name="Body" parent="Text">
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 

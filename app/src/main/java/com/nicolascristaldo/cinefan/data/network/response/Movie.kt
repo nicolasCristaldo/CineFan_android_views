@@ -15,8 +15,15 @@ data class Movie(
     @SerializedName("Plot") val plot: String,
     @SerializedName("Runtime") val runtime: String,
     @SerializedName("Writer") val writer: String,
-    @SerializedName("imdbRating") private val rating: String,
+    @SerializedName("imdbRating") val rating: String,
     @SerializedName("imdbVotes") val votes: String
 ) {
-    fun totalRating() = rating.toFloat()
+    fun totalRating(): Float {
+        return try {
+            rating.toFloat()
+        }
+        catch (e: Exception) {
+            0f
+        }
+    }
 }
