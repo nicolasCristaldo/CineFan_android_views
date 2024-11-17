@@ -9,6 +9,9 @@
     <string name="movie_genre">Genre: %s.</string>
     <string name="movie_rating">Rating</string>
     <string name="movie_votes">(%s votes)</string>
-    <string name="movie_plot">Plot:\n%s</string>
     <string name="movie_language">Language: %s.</string>
+    <string name="movie_writer">Writer: %s.</string>
+    <string name="movie_actors">Actors: %s.</string>
+    <string name="movie_director">Director: %s.</string>
+    <string name="key_contributors">Key Contributors</string>
 </resources>

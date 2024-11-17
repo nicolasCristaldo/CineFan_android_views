@@ -13,7 +13,7 @@
     <color name="rating_excellent">#E152FA</color>
     <color name="rating_great">#18AFF4</color>
     <color name="rating_good">#12D51A</color>
-    <color name="rating_fair">#E9B518</color>
+    <color name="rating_fair">#F2C12D</color>
     <color name="rating_poor">#F61010</color>
 
     <color name="green">#00FF04</color>

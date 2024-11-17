@@ -2,7 +2,6 @@ package com.nicolascristaldo.cinefan.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.nicolascristaldo.cinefan.data.MovieRepositoryImp
-import com.nicolascristaldo.cinefan.ui.home.QueryUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailActivityViewModel @Inject constructor(
     private val movieRepositoryImp: MovieRepositoryImp
-): ViewModel() {
+) : ViewModel() {
 
     private var _movieState = MutableStateFlow<MovieUIState>(MovieUIState.Loading)
     val movieState: StateFlow<MovieUIState> = _movieState
