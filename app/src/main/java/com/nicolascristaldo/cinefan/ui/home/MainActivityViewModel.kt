@@ -20,14 +20,37 @@ class MainActivityViewModel @Inject constructor(
     private var _queryUIState = MutableStateFlow<QueryUIState>(QueryUIState.Loading)
     val queryUIState: StateFlow<QueryUIState> = _queryUIState
 
-    fun getMoviesByName(query: String, page: Int = 1) {
+    var currentPage = 1
+
+    var currentQuery = ""
+
+    fun goToNextPage() {
+        val state = queryUIState.value
+        if (
+            state is QueryUIState.Success
+            && state.response.isValidResult()
+            && currentPage < state.response.totalPages()
+        ) {
+            currentPage++
+            getMoviesByName()
+        }
+    }
+
+    fun goToPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--
+            getMoviesByName()
+        }
+    }
+
+    fun getMoviesByName() {
         CoroutineScope(Dispatchers.IO).launch {
             _queryUIState.value = QueryUIState.Loading
             _queryUIState.value = try {
                 QueryUIState.Success(
                     movieRepositoryImp.getMoviesByName(
-                        query.trim(' '),
-                        page.toString()
+                        currentQuery.trim(' '),
+                        currentPage.toString()
                     )
                 )
             } catch (e: IOException) {

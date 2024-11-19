@@ -9,7 +9,7 @@ data class QueryResponse(
     @SerializedName("totalResults") private val results: String?,
     @SerializedName("Error") val error: String?
 ) {
-    fun totalResults() = results?.toInt() ?: 0
+    private fun totalResults() = results?.toInt() ?: 0
 
     fun totalPages(): Int {
         var pages = 0

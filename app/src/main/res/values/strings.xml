@@ -2,6 +2,7 @@
     <string name="app_name">CineFan</string>
 
     <string name="error_occurred">An error has occurred, check your internet connection.</string>
+    <string name="search_movie">Search any movie in the world!</string>
 
     <string name="movie_type">Type: %s.</string>
     <string name="movie_year">Year: %s.</string>
@@ -14,4 +15,6 @@
     <string name="movie_actors">Actors: %s.</string>
     <string name="movie_director">Director: %s.</string>
     <string name="key_contributors">Key Contributors</string>
+
+    <string name="search_page">Page: %d/%d</string>
 </resources>

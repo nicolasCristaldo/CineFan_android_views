@@ -63,6 +63,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initListeners() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (isFirstTime) {
+                    isFirstTime = false
+                    binding.searchMovieView.isVisible = false
+                    binding.progressBar.isVisible = true
+                }
+                viewModel.currentPage = 1
+                viewModel.currentQuery = query.orEmpty()
+                viewModel.getMoviesByName()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = false
+        })
+
+        binding.ivPageSearchBack.setOnClickListener {
+            viewModel.goToPreviousPage()
+        }
+
+        binding.ivPageSearchForward.setOnClickListener {
+            viewModel.goToNextPage()
+        }
+    }
+
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -79,14 +105,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun successState(queryUIState: QueryUIState.Success) {
         binding.progressBar.isVisible = false
+        binding.pageNavigationBar.isVisible = queryUIState.response.isValidResult()
         movieAdapter.updateList(queryUIState)
+        createUI(queryUIState)
     }
 
     private fun loadingState() {
+        binding.pageNavigationBar.isVisible = false
         if (!isFirstTime) binding.progressBar.isVisible = true
+        else binding.searchMovieView.isVisible = true
     }
 
     private fun errorState() {
+        binding.pageNavigationBar.isVisible = false
+        binding.searchMovieView.isVisible = false
         binding.progressBar.isVisible = false
         movieAdapter.cleanList()
         Toast.makeText(
@@ -102,20 +134,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun initListeners() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (isFirstTime) {
-                    isFirstTime = false
-                    binding.progressBar.isVisible = true
-                }
-                viewModel.getMoviesByName(query.orEmpty())
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean = false
-        })
-
+    private fun createUI(queryUIState: QueryUIState.Success) {
+        binding.tvPages.text =  getString(
+            R.string.search_page,
+            viewModel.currentPage,
+            queryUIState.response.totalPages()
+        )
 
     }
 

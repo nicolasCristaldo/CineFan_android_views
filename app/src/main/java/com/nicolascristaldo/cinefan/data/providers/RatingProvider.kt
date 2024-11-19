@@ -11,15 +11,15 @@ class RatingProvider @Inject constructor() {
                 image = R.drawable.ic_rating_poor,
                 color = R.color.rating_poor
             )
-            in 3.0..5.4 -> RatingModel(
+            in 3.0..5.5 -> RatingModel(
                 image = R.drawable.ic_rating_fair,
                 color = R.color.rating_fair
             )
-            in 5.4..7.4 -> RatingModel(
+            in 5.5..7.5 -> RatingModel(
                 image = R.drawable.ic_rating_good,
                 color = R.color.rating_good
             )
-            in 7.4..9.0 -> RatingModel(
+            in 7.5..9.0 -> RatingModel(
                 image = R.drawable.ic_rating_great,
                 color = R.color.rating_great
             )
