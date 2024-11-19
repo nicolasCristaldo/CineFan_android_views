@@ -17,4 +17,6 @@
     <string name="key_contributors">Key Contributors</string>
 
     <string name="search_page">Page: %d/%d</string>
+
+    <string name="query_hint">Enter a movie</string>
 </resources>
